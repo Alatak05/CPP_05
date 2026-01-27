@@ -1,4 +1,4 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
 Form::Form(const std::string n, int gs, int ge) : name(n), is_signed(false), grade_sign(gs), grade_ex(ge)
@@ -61,6 +61,14 @@ void    Form::beSigned(Bureaucrat& b)
         throw Form::GradeTooLowException();
 }
 
+void Form::check_to_exe(const Bureaucrat& b) const
+{
+    if(is_signed == false)
+        throw Form::NotSigned();
+    if(grade_ex < b.getGrade())
+        throw Form::GradeTooHighException();
+}
+
 std::ostream& operator<<(std::ostream& op, Form& f)
 {
     op << "Name form : " << f.getName() << "| is_signed : " << f.getis_signed() << "| grade required to sign it : " << f.getGradeSign() << "| grade required to execute it : " << f.getGradeEx();
@@ -72,8 +80,12 @@ const char* Form::GradeTooHighException::what() const throw()
     return("Form::GradeTooHighException");
 }
 
-
 const char* Form::GradeTooLowException::what() const throw()
 {
     return("Form::GradeTooLowException");
+}
+
+const char* Form::NotSigned::what() const throw()
+{
+    return("Form::NotSigned");
 }

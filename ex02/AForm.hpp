@@ -3,7 +3,10 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 #include <exception>
+#include <cstdlib>
+#include <ctime>
 
 class Bureaucrat;
 
@@ -27,7 +30,9 @@ class Form
         int getGradeEx(void) const;
 
         void beSigned(Bureaucrat& b);
+        void check_to_exe(const Bureaucrat& b) const;
         virtual void execute(Bureaucrat const & executor) const = 0;
+
 
         class GradeTooHighException : public std::exception
         {
@@ -35,6 +40,11 @@ class Form
                 const char* what() const throw();
         };
         class GradeTooLowException : public std::exception
+        {
+            public :
+                const char* what() const throw();
+        };
+        class NotSigned : public std::exception
         {
             public :
                 const char* what() const throw();

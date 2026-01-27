@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "AForm.hpp"
 
 class Bureaucrat
 {
@@ -16,10 +17,22 @@ class Bureaucrat
         Bureaucrat& operator=(Bureaucrat& other);
         ~Bureaucrat();
         std::string     getName( void );
-        int             getGrade( void );
+        int             getGrade( void ) const;
         void            incr_grade( void );
         void            decr_grade( void );
-        
+
+        void signedForm(Form& f);
+
+        class GradeTooHighException : public std::exception
+        {
+            public :
+                const char* what() const throw();
+        };
+        class GradeTooLowException : public std::exception
+        {
+            public :
+                const char* what() const throw();
+        };
     };
     
 std::ostream& operator<<(std::ostream& op, Bureaucrat& b);
