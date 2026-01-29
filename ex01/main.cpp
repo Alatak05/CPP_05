@@ -14,7 +14,8 @@ int main()
         a.decr_grade();
         std::cout << a << std::endl;
         std::cout << f << std::endl;
-        a.signedForm(f);
+        a.signForm(f);
+        std::cout << "yo\n";
     }
     catch (std::exception& e)
     {

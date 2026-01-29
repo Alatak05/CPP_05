@@ -16,7 +16,7 @@ class Form
         int const grade_ex;
     
     public :
-        Form(const std::string, int gs, int ge);
+        Form(const std::string n, int gs, int ge);
         Form(const Form& other);
         Form& operator=(const Form& other);
         ~Form(void);

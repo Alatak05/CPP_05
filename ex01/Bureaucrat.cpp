@@ -49,7 +49,7 @@ void Bureaucrat::decr_grade(void)
         throw Bureaucrat::GradeTooHighException();
 }
 
-void Bureaucrat::signedForm(Form& f)
+void Bureaucrat::signForm(Form& f)
 {
     try
     {
@@ -58,7 +58,8 @@ void Bureaucrat::signedForm(Form& f)
     }
     catch (std::exception& e)
     {
-        std::cout << getName() << " couldn't sign " << f.getName() << " because " << e.what() << std::endl;
+        std::cout << getName() << " couldn't sign " << f.getName() << " because ";
+        throw Bureaucrat::GradeTooLowException();
     }
 }
 
