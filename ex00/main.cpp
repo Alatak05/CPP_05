@@ -4,7 +4,7 @@ int main()
 {
     try
     {
-        Bureaucrat  a("Jean", 5);
+        Bureaucrat  a("Jean", 555);
         Bureaucrat  b(a);
 
         std::cout << a << std::endl;
@@ -17,12 +17,9 @@ int main()
         b = a;
         std::cout << b << std::endl;
     }
-    catch (int grade)
+    catch (std::exception & e)
     {
-        if (grade > 150)
-            std::cout << "bureaucrat::GradeTooHighException\n";
-        else
-            std::cout << "bureaucrat::GradeTooLowException\n";
+        std::cout << "Warning : " << e.what() << std::endl;
     }
     return 0;
 }
